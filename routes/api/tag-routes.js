@@ -29,9 +29,7 @@ router.get("/:id", async (req, res) => {
     });
 
     if (!tagData) {
-      res
-        .status(404)
-        .json({ message: "Tag not found" });
+      res.status(404).json({ message: "Tag not found" });
       return;
     }
 
@@ -52,7 +50,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async(req, res) => {
+router.put("/:id", async (req, res) => {
   // update a tag's name by its `id` value
   try {
     const updateTag = await Tag.update(
@@ -71,33 +69,33 @@ router.put("/:id", async(req, res) => {
     });
 
     if (!tagById) {
-      res.status(200).json({ message: "No categories found" });
+      res.status(200).json({ message: "No tag found" });
       return;
     }
 
-    res.status(200).json(tagCategory);
-    console.log("Category updated!");
+    res.status(200).json(updateTag);
+    console.log("Tag updated!");
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.delete("/:id", async(req, res) => {
+router.delete("/:id", async (req, res) => {
   // delete on tag by its `id` value
   try {
-    const deleteTag = await Category.destroy({
+    const deleteTag = await Tag.destroy({
       where: {
         id: req.params.id,
       },
     });
-    
-    if (!deleteCategory) {
+
+    if (!deleteTag) {
       res.status(200).json({ message: "No tag found" });
       return;
     }
 
-    res.json(deleteCategory);
-    console.log("Category deleted!");
+    res.json(deleteTag);
+    console.log("Tag deleted!");
   } catch (err) {
     res.status(500).json(err);
   }
