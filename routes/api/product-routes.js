@@ -15,7 +15,6 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: "Shits busted mane" });
   }
   // find all products
-  // be sure to include its associated Category and Tag data
 });
 
 // get one product
@@ -102,8 +101,7 @@ router.put("/:id", (req, res) => {
 
       return res.json(product);
     })
-    .catch((err) => {
-      // console.log(err);
+    .catch((err) => {0
       res.status(400).json(err);
     });
 });
